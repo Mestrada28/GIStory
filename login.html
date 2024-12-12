@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIStory - Explore and Create Timelines and Maps</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        :root {
+            --primary-color: #e2b714;
+            --background-color: #323437;
+            --text-color: #d1d0c5;
+            --card-bg-color: #2c2e31;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--text-color);
+            background: linear-gradient(45deg, #000000, #323437, #000000);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: rgba(226, 183, 20, 0.9) !important;
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand, .nav-link {
+            color: var(--background-color) !important;
+            font-weight: bold;
+        }
+
+        .nav-link:hover, .nav-link:focus {
+            color: var(--card-bg-color) !important;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--background-color);
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #c19b12;
+            border-color: #c19b12;
+            color: var(--background-color);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .hero {
+            padding: 100px 0;
+            background: transparent;
+        }
+
+        .hero h1 {
+            color: var(--primary-color);
+            font-size: 3.5rem; 
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            color: var(--text-color);
+            margin-bottom: 2rem;
+        }
+
+        .feature-card {
+            background-color: rgba(50, 52, 55, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(3px);
+            animation: fadeInUp 0.5s ease-out;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .feature-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        footer {
+            background-color: rgba(30, 31, 33, 0.9);
+            color: var(--text-color);
+            padding: 20px 0;
+            margin-top: auto;
+            backdrop-filter: blur(5px);
+        }
+
+        .login-form {
+            display: flex;
+            align-items: center;
+        }
+
+        .login-form input {
+            margin-right: 10px;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #000000;
+            color: var(--primary-color);
+        }
+
+        .login-form input::placeholder {
+            color: var(--text-color);
+        }
+
+        .login-button {
+            background-color: #000000;
+            color: var(--primary-color);
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: var(--card-bg-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-button-signup {
+            background-color: #007bff;
+            color: white !important;
+            border: none;
+            padding: 10px 30px;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button-signup:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">GIStory</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                </ul>
+                <form id="loginForm" class="login-form" action="login.php" method="post">
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                    <button type="submit" class="login-button">Login</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-4">Discover History with GIStory</h1>
+            <p class="lead mb-5">Explore and create interactive historical timelines and maps</p>
+            <a href="signup.html" class="btn btn-lg nav-button-signup">Sign Up</a>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <section id="features">
+            <h2 class="text-center mb-5" style="color: var(--primary-color);">Key Features</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-card h-100">
+                        <div class="text-center">
+                            <div class="feature-icon mb-3">📅</div>
+                            <h5 class="card-title">Interactive Timelines</h5>
+                            <p class="card-text">Browse and explore interactive timelines of historical or personal events.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card h-100">
+                        <div class="text-center">
+                            <div class="feature-icon mb-3">✏️</div>
+                            <h5 class="card-title">Custom Points</h5>
+                            <p class="card-text">Create your own custom data points to visualize historical periods or personal events.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-card h-100">
+                        <div class="text-center">
+                            <div class="feature-icon mb-3">🗺️</div>
+                            <h5 class="card-title">Custom Maps</h5>
+                            <p class="card-text">Explore maps and geographical data from various eras.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="mt-5 py-5">
+            <div class="feature-card">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h2 class="mb-4" style="color: var(--primary-color);">About GIStory</h2>
+                        <p class="lead">
+                            GIStory aims to make history more accessible and engaging for everyone. Whether you're a history enthusiast, student, or educator, GIStory provides a platform to discover, learn, and share historical information.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="images/image.png" alt= image.png class="img-fluid rounded shadow">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>GIStory</h5>
+                    <p>Explore and create historical timelines and maps</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="terms.html" class="text-light">Terms of Service</a></li>
+                    </ul>
+                    <p>&copy; 2024 GIStory. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function isElementInViewport(el) {
+            var rect = el.getBoundingClientRect();
+            return (
+                rect.top >= 0 &&
+                rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+            );
+        }
+
+        function animateFeatureCards() {
+            var cards = document.querySelectorAll('.feature-card');
+            cards.forEach(function(card) {
+                if (isElementInViewport(card)) {
+                    card.classList.add('visible');
+                }
+            });
+        }
+
+        // Initial call to animate feature cards
+        animateFeatureCards();
+
+        // Animate feature cards on scroll
+        window.addEventListener('scroll', animateFeatureCards);
+
+        // Hover effects added to feature cards
+        document.querySelectorAll('.feature-card').forEach(function(card) {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.05)';
+                this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.4)';
+            });
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+                this.style.boxShadow = '0 6px 10px rgba(0,0,0,0.15)';
+            });
+        });
+
+        // Parallax effect 
+        window.addEventListener('scroll', function() {
+            var scrolled = window.pageYOffset;
+            document.body.style.backgroundPositionY = -(scrolled * 0.1) + 'px';
+        });
+
+        // Smooth scrolling to internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

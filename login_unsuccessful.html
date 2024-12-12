@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Failed - GIStory</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        :root {
+            --primary-color: #e2b714;
+            --background-color: #323437;
+            --text-color: #d1d0c5;
+            --card-bg-color: #2c2e31;
+            --error-color: #ff4444;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--text-color);
+            background: linear-gradient(45deg, #000000, #323437, #000000);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: rgba(226, 183, 20, 0.9) !important;
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand, .nav-link {
+            color: var(--background-color) !important;
+            font-weight: bold;
+        }
+
+        .error-container {
+            background-color: rgba(50, 52, 55, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+            transition: box-shadow 0.3s ease;
+            backdrop-filter: blur(3px);
+            animation: fadeInUp 0.5s ease-out, shake 0.5s ease-in-out;
+            margin-top: 50px;
+            max-width: 400px;
+            width: 100%;
+            margin: 50px auto;
+            text-align: center;
+            border: 2px solid var(--error-color);
+        }
+
+        .error-container:hover {
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .title {
+            color: var(--error-color);
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: #c19b12;
+            text-decoration: underline;
+        }
+
+        .btn-login {
+            background-color: #000000;
+            color: var(--primary-color);
+            font-weight: bold;
+            padding: 0.375rem 1rem;
+            border: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-login:hover {
+            background-color: var(--card-bg-color);
+            transform: translateY(-2px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        footer {
+            background-color: rgba(30, 31, 33, 0.9);
+            color: var(--text-color);
+            padding: 20px 0;
+            margin-top: auto;
+            backdrop-filter: blur(5px);
+        }
+
+        .error-icon {
+            font-size: 3rem;
+            color: var(--error-color);
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">GIStory</a>
+            <a href="login.html" class="btn btn-login">Try Again</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="error-container">
+            <div class="error-icon">❌</div>
+            <h1 class="title">Login Failed</h1>
+            <p>Invalid username or password. Please check your credentials and try again.</p>
+            <p>Don't have an account? <a href="signup.html">Sign up</a>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>GIStory</h5>
+                    <p>Explore and create historical timelines and maps</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="terms.html" class="text-light">Terms of Service</a></li>
+                    </ul>
+                    <p>&copy; 2024 GIStory. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Parallax effect added to the background
+        window.addEventListener('scroll', function() {
+            var scrolled = window.pageYOffset;
+            document.body.style.backgroundPositionY = -(scrolled * 0.1) + 'px';
+        });
+    </script>
+</body>
+</html>

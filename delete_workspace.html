@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Workspace - GIStory</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <style>
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        :root {
+            --primary-color: #e2b714;
+            --background-color: #323437;
+            --text-color: #d1d0c5;
+            --card-bg-color: #2c2e31;
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            color: var(--text-color);
+            background: linear-gradient(45deg, #000000, #323437, #000000);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: rgba(226, 183, 20, 0.9) !important;
+            backdrop-filter: blur(10px);
+            padding: 0.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-brand, .nav-link {
+            color: var(--background-color) !important;
+            font-weight: bold;
+        }
+
+        .content-box {
+            background-color: rgba(50, 52, 55, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.5s ease-out;
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .btn {
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            color: var(--background-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #c19b12;
+            border-color: #c19b12;
+            color: var(--background-color);
+        }
+
+        .btn-outline-danger {
+            color: #ff6b6b;
+            border-color: #ff6b6b;
+        }
+
+        .btn-outline-danger:hover {
+            background-color: #ff6b6b;
+            color: var(--background-color);
+        }
+
+        footer {
+            background-color: rgba(30, 31, 33, 0.9);
+            color: var(--text-color);
+            padding: 20px 0;
+            margin-top: auto;
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">GIStory</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.php">Workspace</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="content-box">
+            <h1 class="text-center">Delete Workspace</h1>
+            <p class="text-center">Are you sure you want to delete your workspace? All data including points, pictures, videos, and texts will be permanently removed.</p>
+            <div class="mt-4 d-flex justify-content-center">
+                <button class="btn btn-outline-danger me-2" id="confirmDelete">Yes, Delete</button>
+                <button class="btn btn-primary" id="cancelDelete">Cancel</button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>GIStory</h5>
+                    <p>Explore and create historical timelines and maps</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <ul class="list-inline">
+                    </ul>
+                    <p>&copy; 2024 GIStory. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Hover effect to content box
+        document.querySelector('.content-box').addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px)';
+            this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.4)';
+        });
+        document.querySelector('.content-box').addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 6px 10px rgba(0,0,0,0.15)';
+        });
+
+        // Parallax effect to background
+        window.addEventListener('scroll', function() {
+            var scrolled = window.pageYOffset;
+            document.body.style.backgroundPositionY = -(scrolled * 0.1) + 'px';
+        });
+
+        document.getElementById('confirmDelete').addEventListener('click', function() {
+            if (confirm('Are you absolutely sure you want to delete your workspace? This action cannot be undone.')) {
+                // Get workspace ID from URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const workspaceID = urlParams.get('id');
+                
+                fetch('delete_workspace.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        workspaceID: workspaceID
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert('Workspace has been successfully deleted.');
+                        window.location.href = 'dashboard.php';
+                    } else {
+                        alert('Error deleting workspace: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    alert('Error deleting workspace: ' + error);
+                });
+            }
+        });
+
+        document.getElementById('cancelDelete').addEventListener('click', function() {
+            window.location.href = 'dashboard.php';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+/* style for pages like edit_workspace2.php*/
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(to bottom right, #313132, #161618);
+}
+
+.login-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.title {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: #FFD700;
+    font-size: 48px;
+    padding-top: 0;
+    margin: 0;
+}
+
+.vertical-line {
+    position: fixed;
+    top: 0;
+    left: calc(20px + 175px);
+    width: 2px;
+    height: 100%;
+    background-color: white;
+    z-index: 11;
+}
+
+.world-map {
+    background: url('images/world-map.png') no-repeat;
+    background-position: right bottom;
+    background-size: contain;
+    opacity: 1;
+    position: absolute;
+    right: 10%;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.login-logo {
+    width: 30px;
+    height: auto;
+    margin-left: 20px;
+}
+
+.login-form {
+    position: absolute;
+    top: 30px;
+    right: 130px;
+    width: 550px;
+    display: flex;
+    align-items: center;
+}
+
+.login-form input {
+    width: calc(65% / 2 - 10px);
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #FFFFFF;
+    border-radius: 5px;
+    display: inline-block;
+    color: #FFD700;
+    background-color: transparent;
+}
+
+.login-form input::placeholder {
+    color: #FFD700;
+}
+
+.login-form input:focus {
+    outline: none;
+    border: 1px solid #FFFFFF;
+    box-shadow: 0 0 8px #FFFFFF;
+}
+
+.login-button {
+    padding: 10px;
+    border: none;
+    background-color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    display: inline-block;
+    width: 30%;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: left;
+}
+
+.footer-button {
+    display: block;
+    width: 7%;
+    padding: 10px;
+    margin-bottom: 45px;
+    margin-left: 30px;
+    border: none;
+    background-color: #fff;
+    border-radius: 20px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.black-box {
+    position: fixed;
+    bottom: 0;
+    left: calc(20px + 175px);
+    right: 0;
+    height: 150px;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    color: white;
+    padding: 20px;
+    text-align: left;
+    font-size: 20px;
+    z-index: 10;
+}
+
+.not-yet-text {
+    color: #A1A1A1;
+}
+
+.login-message,
+.signup-message {
+    color: #fff;
+    font-size: 14px;
+}
+
+.signup-container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.signup-form input,
+.signup-form select,
+.signup-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.signup-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.success-container {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.about-container h1 {
+    color: #333;
+}
+
+.about-container p {
+    margin-bottom: 10px;
+}
+
+.about-container ul {
+    margin-bottom: 20px;
+}
+
+.about-container li {
+    margin-bottom: 5px;
+}
+
+.back-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
